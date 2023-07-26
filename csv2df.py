@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-name = "api_management_1"
+name = "api_management_2"
 path = f"./data/{name}.csv"
 
 
@@ -16,7 +16,7 @@ def dfo(path: str, chunksize: int = 10000):
     """
     DataFrame iterator Object
     """
-    return iter(pd.read_csv(path, chunksize=10000))
+    return iter(pd.read_csv(path, chunksize=chunksize))
 
 
 # if __name__ == "__main__":
