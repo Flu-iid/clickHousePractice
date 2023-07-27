@@ -3,6 +3,7 @@ import json2df
 import pandas as pd
 import numpy as np
 import clickhouse_connect as cc
+from beep import beep
 
 dtype2clickhouse = {"object": "String",
                     np.dtype('O'): "String",
@@ -46,4 +47,4 @@ while True:
         print("Done!")
         break
 
-[print("\a") for i in range(15)]
+beep()
