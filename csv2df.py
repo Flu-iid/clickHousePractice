@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-name = "api_management_2"
+name = "api_management_1"
 path = f"./data/{name}.csv"
 
 

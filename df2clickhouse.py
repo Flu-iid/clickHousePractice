@@ -10,7 +10,7 @@ dtype2clickhouse = {"object": "String",
                     "int64": "Int",
                     np.dtype("int64"): "Int",
                     "float64": "Float64",
-                    np.dtype("float64"): "Float64",
+                    np.dtype("float64"): "Nullable(Float64)",
                     #  "bool":"",
                     "datetime64": "DateTime64",
                     }
