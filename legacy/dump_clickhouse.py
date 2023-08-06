@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import clickhouse_connect as cc
-# from beep import beep
+from beep import beep
 import os
 from sqlalchemy import create_engine
 from module.slp import Slp
@@ -22,7 +22,6 @@ class cc_dump:
             "float64": "Float64",
             np.dtype("float64"): "Nullable(Float64)",
             "datetime64": "DateTime64",
-            np.dtype("datetime64[ns]"): "DateTime64"
         }
         pass
 
@@ -115,7 +114,6 @@ class cc_dump:
         while True:
             try:
                 df: pd.DataFrame = next(dfo)
-                df["received_at"] = pd.to_datetime(df["received_at"])
                 if option != "default":
                     df = self.df_modify(df, option=option)
                 # clean commands here
@@ -137,7 +135,7 @@ class cc_dump:
                 print("Done!")
                 break
 
-        # beep()
+        beep()
 
     def insert_data_alchemy(self):  # needs review
         engine = create_engine(
@@ -154,9 +152,9 @@ class cc_dump:
 
 
 if __name__ == "__main__":
-    n = "api_management_2_cleanse"
-    p = "./data/api_management_2.csv"
-    opt = "drop_all_na"
+    n = "api_management_1"
+    p = "./data/api_management_1.csv"
+    opt = "default"
     o = cc_dump(n, p, engine="MergeTree", orderby="received_at")
     o.init_client(database="api")
     o.df_object("csv")
